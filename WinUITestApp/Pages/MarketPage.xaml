@@ -7,9 +7,25 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:WinUITestApp.Pages"
+    xmlns:m="using:WinUITestApp.Models"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:WinUITestApp.ViewModels"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
-    <Grid Background="Yellow" />
+    <Grid>
+        <ListView ItemsSource="{x:Bind ViewModel.Coins}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="m:Coin">
+                    <StackPanel Orientation="Horizontal" Spacing="20">
+                        <Image Width="50" Source="{x:Bind Image}" />
+                        <TextBlock Text="{x:Bind Name}" />
+                        <TextBlock Text="{x:Bind CurrentPrice}" />
+                        <TextBlock Text="{x:Bind MarketCap}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+
 </Page>
