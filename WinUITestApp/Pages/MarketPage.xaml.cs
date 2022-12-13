@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 using WinUITestApp.ViewModels;
 
@@ -8,8 +9,7 @@ namespace WinUITestApp.Pages
         public MarketViewModel ViewModel { get; }
         public MarketPage()
         {
-            //TODO: ViewModel = App.GetService<MainViewModel>();
-            ViewModel = new MarketViewModel();
+            ViewModel = App.Current.Services.GetService<MarketViewModel>();
             InitializeComponent();
         }
     }

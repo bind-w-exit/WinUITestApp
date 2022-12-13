@@ -10,9 +10,12 @@ namespace WinUITestApp.ViewModels
         [ObservableProperty]
         private List<Coin> coins;
 
-        public MarketViewModel()
+        private ICryptoApiService _cryptoApiService;
+
+        public MarketViewModel(ICryptoApiService cryptoApiService)
         {
-            Coins = CoinGeckoApiService.GetMarkets();
+            _cryptoApiService = cryptoApiService;
+            Coins = _cryptoApiService.GetCoins();
         }
     }
 }

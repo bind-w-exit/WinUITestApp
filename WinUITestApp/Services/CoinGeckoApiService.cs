@@ -3,9 +3,9 @@ using WinUITestApp.Models;
 
 namespace WinUITestApp.Services
 {
-    public static class CoinGeckoApiService
+    public class CoinGeckoApiService : ICryptoApiService
     {
-        public static List<Coin> GetMarkets()
+        public List<Coin> GetCoins()
         {
             var coins = new List<Coin>
             {
