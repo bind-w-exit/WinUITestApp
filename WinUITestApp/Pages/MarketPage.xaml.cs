@@ -9,8 +9,8 @@ namespace WinUITestApp.Pages
         public MarketViewModel ViewModel { get; }
         public MarketPage()
         {
-            ViewModel = App.Current.Services.GetService<MarketViewModel>();
             InitializeComponent();
+            ViewModel = App.Current.Services.GetService<MarketViewModel>();           
         }
     }
 }

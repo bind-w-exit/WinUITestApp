@@ -1,6 +1,3 @@
-<!--  Copyright (c) Microsoft Corporation. All rights reserved.  -->
-<!--  Licensed under the MIT License. See LICENSE in the project root for license information.  -->
-
 <Page
     x:Class="WinUITestApp.Pages.MarketPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -13,19 +10,37 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
-    <Grid>
-        <ListView ItemsSource="{x:Bind ViewModel.Coins}">
-            <ListView.ItemTemplate>
+    <Grid Padding="10">
+        <ProgressRing HorizontalAlignment="Center" IsActive="{x:Bind ViewModel.IsUpdating, Mode=OneWay}" />
+
+        <GridView ItemsSource="{x:Bind ViewModel.Coins, Mode=OneWay}" SelectionMode="None">
+            <GridView.ItemTemplate>
                 <DataTemplate x:DataType="m:Coin">
-                    <StackPanel Orientation="Horizontal" Spacing="20">
+                    <StackPanel
+                        Margin="10"
+                        Orientation="Horizontal"
+                        Spacing="20">
                         <Image Width="50" Source="{x:Bind Image}" />
-                        <TextBlock Text="{x:Bind Name}" />
-                        <TextBlock Text="{x:Bind CurrentPrice}" />
-                        <TextBlock Text="{x:Bind MarketCap}" />
+                        <TextBlock
+                            Width="90"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"
+                            Text="{x:Bind Name}"
+                            TextAlignment="Center"
+                            TextWrapping="WrapWholeWords" />
+                        <!--<TextBlock Text="{x:Bind CurrentPrice}" />
+                        <TextBlock Text="{x:Bind MarketCap}" />-->
                     </StackPanel>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </GridView.ItemTemplate>
+
+            <GridView.ItemContainerStyle>
+                <Style TargetType="GridViewItem">
+                    <Setter Property="Margin" Value="20,5,20,5" />
+                </Style>
+            </GridView.ItemContainerStyle>
+
+        </GridView>
     </Grid>
 
 </Page>

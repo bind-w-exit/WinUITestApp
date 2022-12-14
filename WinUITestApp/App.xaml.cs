@@ -1,14 +1,10 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
-
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using System;
+using System.Net.Http;
+using WinUITestApp.Pages;
 using WinUITestApp.Services;
 using WinUITestApp.ViewModels;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace WinUITestApp
 {
@@ -58,11 +54,15 @@ namespace WinUITestApp
         {
             var services = new ServiceCollection();
 
+            // Views
+            services.AddScoped<MarketPage>();
+
             // Viewmodels
-            services.AddTransient<MarketViewModel>();
+            services.AddScoped<MarketViewModel>();
 
             // Services
-            services.AddSingleton<ICryptoApiService, CoinGeckoApiService>();
+            HttpClient httpClient = new HttpClient();
+            services.AddSingleton<ICryptoApiService>(new CoinGeckoApiService(httpClient));
 
             return services.BuildServiceProvider();
         }

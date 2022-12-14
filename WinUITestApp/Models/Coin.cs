@@ -6,7 +6,7 @@
         public string Symbol { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
-        public decimal CurrentPrice { get; set; }
-        public long MarketCap { get; set; }
+        public float CurrentPrice { get; set; }
+        public int MarketCap { get; set; }
     }
 }
