@@ -2,7 +2,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using System;
 using System.Net.Http;
-using WinUITestApp.Pages;
 using WinUITestApp.Services;
 using WinUITestApp.ViewModels;
 
@@ -53,9 +52,6 @@ namespace WinUITestApp
         private static IServiceProvider ConfigureServices()
         {
             var services = new ServiceCollection();
-
-            // Views
-            services.AddScoped<MarketPage>();
 
             // Viewmodels
             services.AddScoped<MarketViewModel>();

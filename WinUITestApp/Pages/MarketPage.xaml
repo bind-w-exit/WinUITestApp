@@ -10,10 +10,55 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
-    <Grid Padding="10">
-        <ProgressRing HorizontalAlignment="Center" IsActive="{x:Bind ViewModel.IsUpdating, Mode=OneWay}" />
+    <Grid Padding="10,15" RowDefinitions="Auto, *">
 
-        <GridView ItemsSource="{x:Bind ViewModel.Coins, Mode=OneWay}" SelectionMode="None">
+        <StackPanel
+            Margin="10,0,0,15"
+            Orientation="Horizontal"
+            Spacing="20">
+            <ComboBox
+                Width="90"
+                AllowDrop="False"
+                Header="Currency"
+                ItemsSource="{x:Bind ViewModel.Currencies}"
+                SelectedItem="{x:Bind ViewModel.SelectedCurrency}" />
+            <ComboBox
+                Width="120"
+                Header="Filter by"
+                ItemsSource="{x:Bind ViewModel.Filters}"
+                SelectedItem="{x:Bind ViewModel.SelectedFilter}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Spacing="2">
+                            <TextBlock Text="Top" />
+                            <TextBlock Text="{Binding}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <ComboBox
+                Width="120"
+                Header="Prise % change in"
+                ItemsSource="{x:Bind ViewModel.Timeframes}"
+                SelectedIndex="0"
+                SelectedItem="{x:Bind ViewModel.SelectedTimeframe}" />
+            <ComboBox
+                Width="150"
+                Header="Sort by"
+                ItemsSource="{x:Bind ViewModel.SortBy}"
+                SelectedIndex="0"
+                SelectedItem="{x:Bind ViewModel.SelectedSort}" />
+        </StackPanel>
+
+        <ProgressRing
+            Grid.Row="1"
+            HorizontalAlignment="Center"
+            IsActive="{x:Bind ViewModel.IsUpdating, Mode=OneWay}" />
+
+        <GridView
+            Grid.Row="1"
+            ItemsSource="{x:Bind ViewModel.Coins, Mode=OneWay}"
+            SelectionMode="None">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="m:Coin">
                     <StackPanel
