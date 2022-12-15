@@ -15,7 +15,7 @@ namespace WinUITestApp.Services
         public async Task<List<Coin>> GetCoins()
         {
             //Imitation loading
-            Task.Delay(3000).Wait();
+            Task.Delay(5000).Wait();
 
             var response = await _httpClient.GetAsync("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false");
             response.EnsureSuccessStatusCode();
