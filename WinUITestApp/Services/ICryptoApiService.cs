@@ -6,6 +6,6 @@ namespace WinUITestApp.Services
 {
     public interface ICryptoApiService
     {
-        public Task<List<Coin>> GetCoins();
+        public Task<List<Market>> GetMarkets();
     }
 }

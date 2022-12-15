@@ -9,30 +9,30 @@ namespace WinUITestApp.ViewModels
 {
     public partial class MarketViewModel : BaseViewModel
     {
-        readonly ICryptoApiService _cryptoApiService;
+        private readonly ICryptoApiService _cryptoApiService;
 
         [ObservableProperty]
-        private List<Coin> coins;
-
-        [ObservableProperty]
-        private string selectedCurrency;
+        private List<Market> markets;
 
         public readonly List<string> Currencies = new() { "USD", "ETH", "EUR", "JPY" };
 
         [ObservableProperty]
-        private int selectedFilter;
+        private string selectedCurrency;
 
         public readonly List<int> Filters = new() { 10, 50, 100, 250 };
 
         [ObservableProperty]
-        private string selectedTimeframe;
+        private int selectedFilter;
 
         public readonly List<string> Timeframes = new() { "1H", "24H", "7D", "1Y" };
 
         [ObservableProperty]
-        private string selectedSort;
+        private string selectedTimeframe;
 
         public readonly List<string> SortBy = new() { "Rank", "Market Cap", "% Change", "Price" };
+
+        [ObservableProperty]
+        private string selectedSort;
 
         public MarketViewModel(ICryptoApiService cryptoApiService)
         {
@@ -45,12 +45,12 @@ namespace WinUITestApp.ViewModels
         }
 
         [RelayCommand]
-        private async Task UpdateCoinsAsync()
+        private async Task UpdateMarketsAsync()
         {
-            var res = await Task.Run(_cryptoApiService.GetCoins);
+            var res = await Task.Run(_cryptoApiService.GetMarkets);
 
             // Default binding mode in GridView is OneTime or what? ＞︿＜
-            Coins = res;
+            Markets = res;
         }
     }
 }
