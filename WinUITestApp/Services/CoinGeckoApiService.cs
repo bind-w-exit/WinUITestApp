@@ -17,9 +17,9 @@ namespace WinUITestApp.Services
             _httpClient = httpClient;
         }
 
-        public async Task<List<Market>> GetMarkets()
+        public async Task<List<CoinMarket>> GetMarkets()
         {
-            List<Market> markets = null;
+            List<CoinMarket> markets = null;
 
             //Imitation loading
             Task.Delay(3000).Wait();
@@ -36,7 +36,7 @@ namespace WinUITestApp.Services
                         var responseContent = await response.Content.ReadAsStringAsync();
                         try
                         {
-                            markets = JsonConvert.DeserializeObject<List<Market>>(responseContent);
+                            markets = JsonConvert.DeserializeObject<List<CoinMarket>>(responseContent);
                         }
                         //TODO: catch exception
                         catch (Exception)
@@ -60,9 +60,9 @@ namespace WinUITestApp.Services
             return markets;
         }
 
-        public async Task<List<Market>> GetMarkets(string targetCurrency, int perPage, bool sparkline)
+        public async Task<List<CoinMarket>> GetMarkets(string targetCurrency, int perPage, bool sparkline)
         {
-            List <Market> markets = null;
+            List <CoinMarket> markets = null;
 
             //Imitation loading
             Task.Delay(2000).Wait();
@@ -81,7 +81,7 @@ namespace WinUITestApp.Services
                         var responseContent = await response.Content.ReadAsStringAsync();
                         try
                         {
-                            markets = JsonConvert.DeserializeObject<List<Market>>(responseContent);
+                            markets = JsonConvert.DeserializeObject<List<CoinMarket>>(responseContent);
                         }
                         //TODO: catch exception
                         catch (Exception)

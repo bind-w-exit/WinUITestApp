@@ -91,7 +91,7 @@
             SelectionMode="Single">
 
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="m:Market">
+                <DataTemplate x:DataType="m:CoinMarket">
                     <Grid Margin="10" ColumnDefinitions="0.5*,*,*,*">
                         <Image
                             Grid.ColumnSpan="2"

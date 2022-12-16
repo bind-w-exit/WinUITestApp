@@ -15,11 +15,11 @@ namespace WinUITestApp.ViewModels
         private readonly INavigationService _navigationService;
 
         [ObservableProperty]
-        private List<Market> markets;
-        private List<Market> notFilteredMarkets;
+        private List<CoinMarket> markets;
+        private List<CoinMarket> notFilteredMarkets;
 
         [ObservableProperty]
-        private Market selectedMarket;
+        private CoinMarket selectedMarket;
 
         public readonly List<string> Currencies = new() 
         {
@@ -94,7 +94,7 @@ namespace WinUITestApp.ViewModels
         [ObservableProperty]
         private int selectedPerPage;
 
-        public readonly List<string> SortBy = new() {"Name", "Market Cap", "% Change", "Price" };
+        public readonly List<string> SortBy = new() {"Name", "CoinMarket Cap", "% Change", "Price" };
 
         [ObservableProperty]
         private string selectedSort;
@@ -156,7 +156,7 @@ namespace WinUITestApp.ViewModels
             SortMarkets(Markets);
         }
 
-        partial void OnSelectedMarketChanged(Market value)
+        partial void OnSelectedMarketChanged(CoinMarket value)
         {
             if(SelectedMarket != null)
             {
@@ -170,7 +170,7 @@ namespace WinUITestApp.ViewModels
             SortMarkets(SearchFilter(value));
         }
 
-        List<Market> SearchFilter(string value)
+        List<CoinMarket> SearchFilter(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
             {
@@ -183,7 +183,7 @@ namespace WinUITestApp.ViewModels
             }
         }
             
-        void SortMarkets(List<Market> mar)
+        void SortMarkets(List<CoinMarket> mar)
         {
             switch (SelectedSort)
             {
@@ -191,16 +191,17 @@ namespace WinUITestApp.ViewModels
                     Markets = mar.OrderBy(coin => coin.Name).ToList();
                     break;
 
-                case "Market Cap":
+                case "CoinMarket Cap":
                     Markets = mar.OrderByDescending(coin => coin.MarketCap).ToList();
                     break;
 
                 case "% Change":
-                    Markets = mar.OrderBy(coin => coin.MarketCapRank).ToList();
+                    Markets = mar.OrderBy(coin => coin.PriceChangePercentage24H).ToList();
+                    
                     break;
 
                 case "Price":
-                    Markets = mar.OrderBy(coin => coin.CurrentPrice).ToList();
+                    Markets = mar.OrderByDescending(coin => coin.CurrentPrice).ToList();
                     break;
 
                 default:

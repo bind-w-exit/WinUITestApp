@@ -6,7 +6,7 @@ namespace WinUITestApp.Services
 {
     public interface ICryptoApiService
     {
-        public Task<List<Market>> GetMarkets();
-        public Task<List<Market>> GetMarkets(string targetCurrency, int perPage, bool sparkline);
+        public Task<List<CoinMarket>> GetMarkets();
+        public Task<List<CoinMarket>> GetMarkets(string targetCurrency, int perPage, bool sparkline);
     }
 }
