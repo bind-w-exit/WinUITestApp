@@ -1,10 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Linq;
+using WinUITestApp.Services;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -20,11 +22,17 @@ namespace WinUITestApp
     {
         public MainWindow()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+
+            var navigationService = App.Current.Services.GetService<INavigationService>();
+            navigationService.ContentFrame = ContentFrame;
 
             MainNavigationView.Loaded += MainNavigationView_Loaded;
             MainNavigationView.ItemInvoked += MainNavigationView_ItemInvoked;
         }
+
+        // TODO: MVVM Navigation
+        #region Navigation
 
         public void SetCurrentNavigationViewItem(string menuItemTag, object parameter)
         {
@@ -64,5 +72,7 @@ namespace WinUITestApp
                 ContentFrame.GoBack();
             }
         }
+
+        #endregion Navigation
     }
 }

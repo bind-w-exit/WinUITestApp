@@ -14,93 +14,113 @@
 
     <i:Interaction.Behaviors>
         <ic:EventTriggerBehavior EventName="Loaded">
-            <ic:InvokeCommandAction Command="{x:Bind ViewModel.UpdateCoinsCommand}" />
+            <ic:InvokeCommandAction Command="{x:Bind ViewModel.UpdateMarketsCommand}" />
         </ic:EventTriggerBehavior>
     </i:Interaction.Behaviors>
 
-    <Grid Padding="10,15" RowDefinitions="Auto, *">
+    <Grid Padding="10,15" RowDefinitions="Auto, Auto, *">
 
-        <StackPanel
-            Margin="10,0,0,15"
-            Orientation="Horizontal"
-            Spacing="20">
+        <Grid ColumnDefinitions="Auto, *">
+            <StackPanel
+                Margin="10,0,0,15"
+                Orientation="Horizontal"
+                Spacing="20">
+                <ComboBox
+                    Width="90"
+                    AllowDrop="False"
+                    Header="Currency"
+                    ItemsSource="{x:Bind ViewModel.Currencies}"
+                    SelectedItem="{x:Bind ViewModel.SelectedCurrency, Mode=TwoWay}" />
+                <ComboBox
+                    Width="120"
+                    Header="Filter by"
+                    ItemsSource="{x:Bind ViewModel.PerPage}"
+                    SelectedItem="{x:Bind ViewModel.SelectedPerPage, Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Spacing="2">
+                                <TextBlock Text="Top" />
+                                <TextBlock Text="{Binding}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <ComboBox
+                    Width="150"
+                    Header="Sort by"
+                    ItemsSource="{x:Bind ViewModel.SortBy}"
+                    SelectedIndex="0"
+                    SelectedItem="{x:Bind ViewModel.SelectedSort, Mode=OneWay}" />
+                <Button
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Command="{x:Bind ViewModel.UpdateMarketsCommand}"
+                    Content="Reload" />
+                <Button
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Command="{x:Bind ViewModel.ItemClickedCommand}"
+                    Content="Go to item" />
+            </StackPanel>
 
-            <ComboBox
-                Width="90"
-                AllowDrop="False"
-                Header="Currency"
-                ItemsSource="{x:Bind ViewModel.Currencies}"
-                SelectedItem="{x:Bind ViewModel.SelectedCurrency}" />
-            <ComboBox
-                Width="120"
-                Header="Filter by"
-                ItemsSource="{x:Bind ViewModel.Filters}"
-                SelectedItem="{x:Bind ViewModel.SelectedFilter}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Spacing="2">
-                            <TextBlock Text="Top" />
-                            <TextBlock Text="{Binding}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <ComboBox
-                Width="120"
-                Header="Prise % change in"
-                ItemsSource="{x:Bind ViewModel.Timeframes}"
-                SelectedIndex="0"
-                SelectedItem="{x:Bind ViewModel.SelectedTimeframe}" />
-            <ComboBox
-                Width="150"
-                Header="Sort by"
-                ItemsSource="{x:Bind ViewModel.SortBy}"
-                SelectedIndex="0"
-                SelectedItem="{x:Bind ViewModel.SelectedSort}" />
-            <Button
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
-                Command="{x:Bind ViewModel.UpdateCoinsCommand}"
-                Content="Reload" />
-        </StackPanel>
+            <ProgressRing
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                IsActive="{x:Bind ViewModel.UpdateMarketsCommand.IsRunning, Mode=OneWay}" />
+        </Grid>
 
-        <ProgressRing
-            Grid.Row="1"
-            HorizontalAlignment="Center"
-            IsActive="{x:Bind ViewModel.UpdateCoinsCommand.IsRunning, Mode=OneWay}" />
+        <Grid Grid.Row="1" ColumnDefinitions="0.5*,*,*,*">
+            <TextBlock
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Center"
+                Text="Coin" />
+            <TextBlock
+                Grid.Column="2"
+                HorizontalAlignment="Center"
+                Text="Price" />
+            <TextBlock
+                Grid.Column="3"
+                HorizontalAlignment="Center"
+                Text="Market Cap" />
+        </Grid>
 
         <!--  TODO: Not visible when reloading  -->
-        <GridView
-            Grid.Row="1"
+        <ListView
+            Grid.Row="2"
             ItemsSource="{x:Bind ViewModel.Markets, Mode=OneWay}"
             SelectionMode="None">
-            <GridView.ItemTemplate>
+            <ListView.ItemTemplate>
                 <DataTemplate x:DataType="m:Market">
-                    <StackPanel
-                        Margin="10"
-                        Orientation="Horizontal"
-                        Spacing="20">
-                        <Image Width="50" Source="{x:Bind Image}" />
+                    <Grid Margin="10" ColumnDefinitions="0.5*,*,*,*">
+
+                        <Image
+                            Width="50"
+                            HorizontalAlignment="Left"
+                            Source="{x:Bind Image}" />
                         <TextBlock
-                            Width="90"
+                            Grid.Column="1"
+                            HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             FontWeight="Bold"
                             Text="{x:Bind Name}"
-                            TextAlignment="Center"
                             TextWrapping="WrapWholeWords" />
-                        <!--<TextBlock Text="{x:Bind CurrentPrice}" />
-                        <TextBlock Text="{x:Bind MarketCap}" />-->
-                    </StackPanel>
+                        <TextBlock
+                            Grid.Column="2"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"
+                            Text="{x:Bind CurrentPrice}" />
+                        <TextBlock
+                            Grid.Column="3"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"
+                            Text="{x:Bind MarketCap}" />
+                    </Grid>
                 </DataTemplate>
-            </GridView.ItemTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
-            <GridView.ItemContainerStyle>
-                <Style TargetType="GridViewItem">
-                    <Setter Property="Margin" Value="20,5,20,5" />
-                </Style>
-            </GridView.ItemContainerStyle>
-
-        </GridView>
     </Grid>
 
 </Page>
