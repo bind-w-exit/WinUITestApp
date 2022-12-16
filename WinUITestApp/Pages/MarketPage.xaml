@@ -44,13 +44,20 @@
                     Header="Sort by"
                     ItemsSource="{x:Bind ViewModel.SortBy}"
                     SelectedIndex="0"
-                    SelectedItem="{x:Bind ViewModel.SelectedSort, Mode=OneWay}" />
+                    SelectedItem="{x:Bind ViewModel.SelectedSort, Mode=TwoWay}" />
+                <ComboBox
+                    Width="90"
+                    Header="Timeframe"
+                    ItemsSource="{x:Bind ViewModel.Timeframes}"
+                    SelectedIndex="0"
+                    SelectedItem="{x:Bind ViewModel.SelectedTimeframe, Mode=TwoWay}" />
                 <AutoSuggestBox
                     Width="200"
                     Height="Auto"
                     VerticalAlignment="Bottom"
                     PlaceholderText="Search"
-                    QueryIcon="Find" />
+                    QueryIcon="Find"
+                    Text="{x:Bind ViewModel.SearchField, Mode=TwoWay}" />
             </StackPanel>
 
             <ProgressRing
@@ -77,7 +84,6 @@
                 Text="Market Cap" />
         </Grid>
 
-        <!--  TODO: Not visible when reloading  -->
         <ListView
             Grid.Row="2"
             ItemsSource="{x:Bind ViewModel.Markets, Mode=OneWay}"

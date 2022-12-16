@@ -69,7 +69,8 @@ namespace WinUITestApp.Services
 
             var uri = baseUri + "/coins/markets?vs_currency="
                 + targetCurrency.ToLower() + "&order=market_cap_desc&per_page="
-                + perPage + "&sparkline=" + sparkline.ToString().ToLower();
+                + perPage + "&sparkline=" + sparkline.ToString().ToLower()
+                + "&price_change_percentage=1h%2C24h%2C7d";
 
             try
             {
