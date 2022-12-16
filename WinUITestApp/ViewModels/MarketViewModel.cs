@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WinUITestApp.Models;
+using WinUITestApp.Pages;
 using WinUITestApp.Services;
 
 namespace WinUITestApp.ViewModels
@@ -14,6 +15,9 @@ namespace WinUITestApp.ViewModels
 
         [ObservableProperty]
         private List<Market> markets;
+
+        [ObservableProperty]
+        private Market selectedMarket;
 
         public readonly List<string> Currencies = new() 
         {
@@ -101,6 +105,8 @@ namespace WinUITestApp.ViewModels
             selectedCurrency = "USD";
             selectedPerPage = PerPage[1];
             selectedSort = SortBy[1];
+
+            UpdateMarketsCommand.Execute(null);
         }
 
         [RelayCommand]
@@ -136,10 +142,10 @@ namespace WinUITestApp.ViewModels
             // TODO: Sort markets
         }
 
-        [RelayCommand]
-        private void ItemClicked(Market selectedItem = null)
+        partial void OnSelectedMarketChanged(Market value)
         {
-            _navigationService.NavigateTo("CoinPage", selectedItem);
+            if(selectedMarket != null)
+                _navigationService.NavigateTo(nameof(CoinPage), value);
         }
     }
 }

@@ -1,6 +1,11 @@
-﻿namespace WinUITestApp.ViewModels
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using WinUITestApp.Models;
+
+namespace WinUITestApp.ViewModels
 {
-    public class CoinViewModel : BaseViewModel
+    public partial class CoinViewModel : BaseViewModel
     {
+        [ObservableProperty]
+        private Coin coin;
     }
 }

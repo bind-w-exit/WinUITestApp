@@ -8,5 +8,5 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
-    <Grid Background="Brown" />
+    <TextBlock Text="{x:Bind ViewModel.Coin.Name}" />
 </Page>

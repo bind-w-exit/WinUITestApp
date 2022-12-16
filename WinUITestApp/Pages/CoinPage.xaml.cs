@@ -1,5 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Navigation;
+using WinUITestApp.Models;
 using WinUITestApp.ViewModels;
 
 namespace WinUITestApp.Pages
@@ -11,6 +13,17 @@ namespace WinUITestApp.Pages
         {
             InitializeComponent();
             ViewModel = App.Current.Services.GetService<CoinViewModel>();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var coin = e.Parameter as Coin;
+            if (coin != null)
+            {
+                ViewModel.Coin = coin;
+            }
+
+            base.OnNavigatedTo(e);
         }
     }
 }

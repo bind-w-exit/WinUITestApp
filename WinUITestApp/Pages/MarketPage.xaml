@@ -12,12 +12,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
-    <i:Interaction.Behaviors>
-        <ic:EventTriggerBehavior EventName="Loaded">
-            <ic:InvokeCommandAction Command="{x:Bind ViewModel.UpdateMarketsCommand}" />
-        </ic:EventTriggerBehavior>
-    </i:Interaction.Behaviors>
-
     <Grid Padding="10,15" RowDefinitions="Auto, Auto, *">
 
         <Grid ColumnDefinitions="Auto, *">
@@ -51,16 +45,12 @@
                     ItemsSource="{x:Bind ViewModel.SortBy}"
                     SelectedIndex="0"
                     SelectedItem="{x:Bind ViewModel.SelectedSort, Mode=OneWay}" />
-                <Button
-                    HorizontalAlignment="Right"
+                <AutoSuggestBox
+                    Width="200"
+                    Height="Auto"
                     VerticalAlignment="Bottom"
-                    Command="{x:Bind ViewModel.UpdateMarketsCommand}"
-                    Content="Reload" />
-                <Button
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    Command="{x:Bind ViewModel.ItemClickedCommand}"
-                    Content="Go to item" />
+                    PlaceholderText="Search"
+                    QueryIcon="Find" />
             </StackPanel>
 
             <ProgressRing
@@ -69,7 +59,10 @@
                 IsActive="{x:Bind ViewModel.UpdateMarketsCommand.IsRunning, Mode=OneWay}" />
         </Grid>
 
-        <Grid Grid.Row="1" ColumnDefinitions="0.5*,*,*,*">
+        <Grid
+            Grid.Row="1"
+            Margin="10"
+            ColumnDefinitions="0.5*,*,*,*">
             <TextBlock
                 Grid.ColumnSpan="2"
                 HorizontalAlignment="Center"
@@ -88,31 +81,32 @@
         <ListView
             Grid.Row="2"
             ItemsSource="{x:Bind ViewModel.Markets, Mode=OneWay}"
-            SelectionMode="None">
+            SelectedItem="{x:Bind ViewModel.SelectedMarket, Mode=TwoWay}"
+            SelectionMode="Single">
+
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="m:Market">
                     <Grid Margin="10" ColumnDefinitions="0.5*,*,*,*">
-
                         <Image
+                            Grid.ColumnSpan="2"
                             Width="50"
                             HorizontalAlignment="Left"
                             Source="{x:Bind Image}" />
                         <TextBlock
                             Grid.Column="1"
-                            HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             FontWeight="Bold"
                             Text="{x:Bind Name}"
                             TextWrapping="WrapWholeWords" />
                         <TextBlock
                             Grid.Column="2"
-                            HorizontalAlignment="Left"
+                            HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             FontWeight="Bold"
                             Text="{x:Bind CurrentPrice}" />
                         <TextBlock
                             Grid.Column="3"
-                            HorizontalAlignment="Left"
+                            HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             FontWeight="Bold"
                             Text="{x:Bind MarketCap}" />

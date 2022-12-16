@@ -12,7 +12,6 @@
         AlwaysShowHeader="False"
         BackRequested="MainNavigationView_BackRequested"
         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-        IsBackButtonVisible="Collapsed"
         IsBackEnabled="{x:Bind ContentFrame.CanGoBack, Mode=OneWay}"
         OpenPaneLength="200">
         <NavigationView.MenuItems>
