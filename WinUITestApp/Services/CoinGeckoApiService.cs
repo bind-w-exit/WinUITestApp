@@ -17,7 +17,7 @@ namespace WinUITestApp.Services
             _httpClient = httpClient;
         }
 
-        public async Task<List<CoinMarket>> GetMarkets()
+        public async Task<List<CoinMarket>> GetCoinMarkets()
         {
             List<CoinMarket> markets = null;
 
@@ -60,7 +60,7 @@ namespace WinUITestApp.Services
             return markets;
         }
 
-        public async Task<List<CoinMarket>> GetMarkets(string targetCurrency, int perPage, bool sparkline)
+        public async Task<List<CoinMarket>> GetCoinMarkets(string targetCurrency, int perPage, bool sparkline)
         {
             List <CoinMarket> markets = null;
 
@@ -102,6 +102,48 @@ namespace WinUITestApp.Services
             }
 
             return markets;
+        }
+
+        public async Task<CoinByIdFullData> GetCoinById(string id)
+        {
+            //Imitation loading
+            Task.Delay(1000).Wait();
+
+            var coin = new CoinByIdFullData();
+
+            var uri = baseUri + "/coins/" + id
+                + "?localization=false&tickers=false&community_data=false&developer_data=false";
+
+            try
+            {
+                using (var response = await _httpClient.GetAsync(uri))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseContent = await response.Content.ReadAsStringAsync();
+                        try
+                        {
+                            coin = JsonConvert.DeserializeObject<CoinByIdFullData>(responseContent);
+                        }
+                        //TODO: catch exception
+                        catch (Exception)
+                        {
+                        }
+                    }
+                    else
+                    {
+                        //TODO: catch exception
+                        //throw new Exception(response.ReasonPhrase);
+                    }
+                }
+            }
+            //TODO: catch exception
+            catch (Exception)
+            {
+                //throw;
+            }
+
+            return coin;
         }
     }
 }

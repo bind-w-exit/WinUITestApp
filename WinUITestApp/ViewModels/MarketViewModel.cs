@@ -125,11 +125,10 @@ namespace WinUITestApp.ViewModels
         [RelayCommand]
         private async Task UpdateMarketsAsync()
         {
-            var res = await Task.Run(() => _cryptoApiService.GetMarkets(selectedCurrency, selectedPerPage, false));
+            var res = await Task.Run(() => _cryptoApiService.GetCoinMarkets(selectedCurrency, selectedPerPage, false));
 
             if (res != null)
             {
-                // Default binding mode in GridView is OneTime or what? ＞︿＜
                 notFilteredMarkets = res;
                 SortMarkets(SearchFilter(SearchField)); // TODO: func refactoring 🥲
             }
@@ -160,7 +159,7 @@ namespace WinUITestApp.ViewModels
         {
             if(SelectedMarket != null)
             {
-                _navigationService.NavigateTo(nameof(CoinPage), value);
+                _navigationService.NavigateTo(nameof(CoinPage), value.Id);
                 SelectedMarket = null;  // TODO: Item navigation based on tapped 🙈
             }             
         }

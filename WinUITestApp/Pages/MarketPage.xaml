@@ -61,7 +61,7 @@
                     Width="200"
                     Height="Auto"
                     VerticalAlignment="Bottom"
-                    PlaceholderText="Search"
+                    PlaceholderText="Search (local)"
                     QueryIcon="Find"
                     Text="{x:Bind ViewModel.SearchField, Mode=TwoWay}" />
             </StackPanel>

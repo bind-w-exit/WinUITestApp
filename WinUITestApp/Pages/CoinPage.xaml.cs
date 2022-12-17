@@ -17,11 +17,11 @@ namespace WinUITestApp.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //var coin = e.Parameter as string;
-            //if (coin != null)
-            //{
-            //    ViewModel.Coin = coin;
-            //}
+            var id = e.Parameter as string;
+            if (id != null)
+            {
+                ViewModel.UpdateCoinCommand.Execute(id);
+            }
 
             base.OnNavigatedTo(e);
         }

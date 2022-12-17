@@ -7,6 +7,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
+    <Grid>
+        <TextBlock Text="{x:Bind ViewModel.Coin.Name, Mode=OneWay}" />
+        <ProgressRing
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            IsActive="{x:Bind ViewModel.UpdateCoinCommand.IsRunning, Mode=OneWay}" />
+    </Grid>
 
-    <TextBlock Text="{x:Bind ViewModel.Coin.Name}" />
 </Page>
