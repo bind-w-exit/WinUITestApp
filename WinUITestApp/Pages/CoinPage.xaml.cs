@@ -17,7 +17,7 @@ namespace WinUITestApp.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var coin = e.Parameter as Coin;
+            var coin = e.Parameter as CoinMarket;
             if (coin != null)
             {
                 ViewModel.Coin = coin;

@@ -6,6 +6,6 @@ namespace WinUITestApp.ViewModels
     public partial class CoinViewModel : BaseViewModel
     {
         [ObservableProperty]
-        private Coin coin;
+        private CoinMarket coin;
     }
 }

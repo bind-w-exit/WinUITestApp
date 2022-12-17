@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
 
+// References: https://github.com/tosunthex/CoinGecko
+
 namespace WinUITestApp.Models
 {
     public class CoinMarket : MarketDataOhlcv

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
+
+// References: https://github.com/tosunthex/CoinGecko
 
 namespace WinUITestApp.Models
 {

@@ -94,7 +94,7 @@ namespace WinUITestApp.ViewModels
         [ObservableProperty]
         private int selectedPerPage;
 
-        public readonly List<string> SortBy = new() {"Name", "CoinMarket Cap", "% Change", "Price" };
+        public readonly List<string> SortBy = new() {"Rank", "Name", "Market Cap", "% Change", "Price" };
 
         [ObservableProperty]
         private string selectedSort;
@@ -115,7 +115,7 @@ namespace WinUITestApp.ViewModels
 
             selectedCurrency = "USD";
             selectedPerPage = PerPage[1];
-            selectedSort = SortBy[1];
+            selectedSort = SortBy[2];
             selectedTimeframe = Timeframes[1];
             searchField = "";
 
@@ -187,16 +187,20 @@ namespace WinUITestApp.ViewModels
         {
             switch (SelectedSort)
             {
+                case "Rank":
+                    Markets = mar.OrderBy(coin => coin.MarketCapRank).ToList();
+                    break;
+
                 case "Name":
                     Markets = mar.OrderBy(coin => coin.Name).ToList();
                     break;
 
-                case "CoinMarket Cap":
+                case "Market Cap":
                     Markets = mar.OrderByDescending(coin => coin.MarketCap).ToList();
                     break;
 
                 case "% Change":
-                    Markets = mar.OrderBy(coin => coin.PriceChangePercentage24H).ToList();
+                    Markets = mar.OrderByDescending(coin => coin.PriceChangePercentage24H).ToList();
                     
                     break;
 

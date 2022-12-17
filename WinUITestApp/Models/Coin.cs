@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 
+// References: https://github.com/tosunthex/CoinGecko
+
 namespace WinUITestApp.Models
 {
     public class Coin
