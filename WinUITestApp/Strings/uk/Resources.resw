@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Settings_Personalization.Text" xml:space="preserve">
+    <value>Персоналізація</value>
+  </data>
+  <data name="Settings_Theme.Text" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="Settings_Theme_Light.Content" xml:space="preserve">
+    <value>Світла</value>
+  </data>
+  <data name="Settings_Theme_Dark.Content" xml:space="preserve">
+    <value>Темна</value>
+  </data>
+  <data name="Settings_Theme_Default.Content" xml:space="preserve">
+    <value>Тема системи</value>
+  </data>
+  <data name="Settings_About.Text" xml:space="preserve">
+    <value>Детальніше про застосунок 💕💕💕</value>
+  </data>
+  <data name="Settings_AboutDescription.Text" xml:space="preserve">
+    <value>Тестове завдання для позиції Digital Cloud Technologies .NET Developer</value>
+  </data>
+  <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
+    <value>Декларація конфіденційності</value>
+  </data>
+  <data name="LocalizationChangedMessage.Text" xml:space="preserve">
+    <value>Зміни відбудуться після перезавантаження застосунку.</value>
+  </data>
+  <data name="Nav_Host_Explore.Content" xml:space="preserve">
+    <value>Переглянути</value>
+  </data>
+  <data name="Nav_Host_Market.Content" xml:space="preserve">
+    <value>Ринок</value>
+  </data>
+  <data name="Nav_Host_Portfolio.Content" xml:space="preserve">
+    <value>Портфоліо</value>
+  </data>
+  <data name="Nav_Host_Search.Content" xml:space="preserve">
+    <value>Пошук</value>
+  </data>
+  <data name="Market_Coin.Text" xml:space="preserve">
+    <value>Монета</value>
+  </data>
+  <data name="Market_Currency.Header" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="Market_FilterBy.Header" xml:space="preserve">
+    <value>Фільтр</value>
+  </data>
+  <data name="Market_MarketCap.Text" xml:space="preserve">
+    <value>Капіталізація</value>
+  </data>
+  <data name="Market_Price.Text" xml:space="preserve">
+    <value>Вартість</value>
+  </data>
+  <data name="Market_Search.PlaceholderText" xml:space="preserve">
+    <value>Пошук</value>
+  </data>
+  <data name="Market_SortBy.Header" xml:space="preserve">
+    <value>Сортувати</value>
+  </data>
+  <data name="Market_Sort_Change" xml:space="preserve">
+    <value>% Динаміка</value>
+  </data>
+  <data name="Market_Sort_MarketCap" xml:space="preserve">
+    <value>Капіталізація</value>
+  </data>
+  <data name="Market_Sort_Name" xml:space="preserve">
+    <value>Назва</value>
+  </data>
+  <data name="Market_Sort_Price" xml:space="preserve">
+    <value>Вартість</value>
+  </data>
+  <data name="Market_FilterBy_Top.Text" xml:space="preserve">
+    <value>Топ</value>
+  </data>
+  <data name="Market_Rank.Text" xml:space="preserve">
+    <value>Рейтинг</value>
+  </data>
+  <data name="Market_Timeframe.Header" xml:space="preserve">
+    <value>Інтервал часу:</value>
+  </data>
+  <data name="Coin_1Y.Text" xml:space="preserve">
+    <value>1 Рік</value>
+  </data>
+  <data name="Coin_24H.Text" xml:space="preserve">
+    <value>24 Год.</value>
+  </data>
+  <data name="Coin_30D.Text" xml:space="preserve">
+    <value>30 Діб</value>
+  </data>
+  <data name="Coin_7D.Text" xml:space="preserve">
+    <value>7 Діб</value>
+  </data>
+  <data name="Coin_AvaibleSupply.Text" xml:space="preserve">
+    <value>Кількість в обігу</value>
+  </data>
+  <data name="Coin_Description.Text" xml:space="preserve">
+    <value>Опис</value>
+  </data>
+  <data name="Coin_High24H.Text" xml:space="preserve">
+    <value>Максимум за 24 години</value>
+  </data>
+  <data name="Coin_Low24H.Text" xml:space="preserve">
+    <value>Мінімум за 24 години</value>
+  </data>
+  <data name="Coin_MarketCap.Text" xml:space="preserve">
+    <value>Ринкова капіталізація</value>
+  </data>
+  <data name="Coin_MarketCapRank.Text" xml:space="preserve">
+    <value>Рейтинг ринкової капіталізації</value>
+  </data>
+  <data name="Coin_TotalSupply.Text" xml:space="preserve">
+    <value>Загальний обсяг пропозиції</value>
+  </data>
+  <data name="Coin_TradingVolume.Text" xml:space="preserve">
+    <value>Обсяг торгів</value>
+  </data>
+  <data name="Settings_Language.Header" xml:space="preserve">
+    <value>Мова</value>
+  </data>
+</root>

@@ -15,9 +15,17 @@ namespace WinUITestApp
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        private readonly ILocalizationService _localizationService;
+        private readonly IThemeSelectorService _themeSelectorService;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            _localizationService = App.Current.Services.GetService<ILocalizationService>();
+            _localizationService.InitializeAsync().ConfigureAwait(false);
+
+            _themeSelectorService = App.Current.Services.GetService<IThemeSelectorService>();
 
             var navigationService = App.Current.Services.GetService<INavigationService>();
             navigationService.ContentFrame = ContentFrame;
@@ -55,9 +63,12 @@ namespace WinUITestApp
             SetCurrentNavigationViewItem((NavigationViewItem)sender.SelectedItem, null);
         }
 
-        void MainNavigationView_Loaded(object sender, RoutedEventArgs e)
+        async void MainNavigationView_Loaded(object sender, RoutedEventArgs e)
         {
             SetCurrentNavigationViewItem("Market", null);
+
+            await _themeSelectorService.InitializeAsync();
+            await _themeSelectorService.SetRequestedThemeAsync();
         }
 
         void MainNavigationView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)

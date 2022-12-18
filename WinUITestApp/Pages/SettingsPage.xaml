@@ -3,10 +3,92 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="using:WinUITestApp.Helpers"
     xmlns:local="using:WinUITestApp.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:WinUITestApp.Models"
+    xmlns:xaml="using:Microsoft.UI.Xaml"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
-    <Grid Background="Green" />
+    <Page.Resources>
+        <helpers:ThemeEnumToBooleanConverter x:Key="ThemeEnumToBooleanConverter" />
+        <helpers:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Page.Resources>
+
+    <Grid>
+        <StackPanel x:Name="ContentArea" Margin="10">
+            <TextBlock x:Uid="Settings_Personalization" Style="{ThemeResource SubtitleTextBlockStyle}" />
+            <StackPanel Margin="10">
+                <TextBlock x:Uid="Settings_Theme" />
+
+                <StackPanel Margin="10">
+                    <RadioButton
+                        x:Uid="Settings_Theme_Light"
+                        Command="{x:Bind ViewModel.SetThemeCommand}"
+                        FontSize="15"
+                        GroupName="AppTheme"
+                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource ThemeEnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}">
+                        <RadioButton.CommandParameter>
+                            <xaml:ElementTheme>Light</xaml:ElementTheme>
+                        </RadioButton.CommandParameter>
+                    </RadioButton>
+                    <RadioButton
+                        x:Uid="Settings_Theme_Dark"
+                        Command="{x:Bind ViewModel.SetThemeCommand}"
+                        FontSize="15"
+                        GroupName="AppTheme"
+                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource ThemeEnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}">
+                        <RadioButton.CommandParameter>
+                            <xaml:ElementTheme>Dark</xaml:ElementTheme>
+                        </RadioButton.CommandParameter>
+                    </RadioButton>
+                    <RadioButton
+                        x:Uid="Settings_Theme_Default"
+                        Command="{x:Bind ViewModel.SetThemeCommand}"
+                        FontSize="15"
+                        GroupName="AppTheme"
+                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource ThemeEnumToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}">
+                        <RadioButton.CommandParameter>
+                            <xaml:ElementTheme>Default</xaml:ElementTheme>
+                        </RadioButton.CommandParameter>
+                    </RadioButton>
+                </StackPanel>
+            </StackPanel>
+
+            <!--  Localization  -->
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <ComboBox
+                    x:Uid="Settings_Language"
+                    Width="150"
+                    ItemsSource="{x:Bind ViewModel.AvailableLanguages, Mode=OneWay}"
+                    SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="models:LanguageItem">
+                            <StackPanel Orientation="Horizontal" Spacing="2">
+                                <TextBlock Text="{x:Bind DisplayName}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <TextBlock
+                    x:Uid="LocalizationChangedMessage"
+                    Margin="10"
+                    VerticalAlignment="Bottom"
+                    Foreground="Red"
+                    Visibility="{x:Bind ViewModel.IsLocalizationChanged, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </StackPanel>
+
+
+            <TextBlock x:Uid="Settings_About" Margin="10" />
+
+            <StackPanel Margin="10" Spacing="10">
+                <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Text="{x:Bind ViewModel.VersionDescription, Mode=OneWay}" />
+
+                <TextBlock x:Uid="Settings_AboutDescription" />
+                <HyperlinkButton x:Uid="SettingsPage_PrivacyTermsLink" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
 </Page>

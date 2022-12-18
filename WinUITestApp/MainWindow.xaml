@@ -16,19 +16,19 @@
         OpenPaneLength="200">
         <NavigationView.MenuItems>
             <NavigationViewItem
-                Content="Market"
+                x:Uid="Nav_Host_Market"
                 Icon="AllApps"
                 Tag="Market" />
             <NavigationViewItem
-                Content="Portfolio"
+                x:Uid="Nav_Host_Portfolio"
                 Icon="Contact"
                 Tag="Portfolio" />
             <NavigationViewItem
-                Content="Search"
+                x:Uid="Nav_Host_Search"
                 Icon="Find"
                 Tag="Search" />
             <NavigationViewItem
-                Content="Explore"
+                x:Uid="Nav_Host_Explore"
                 Icon="Filter"
                 Tag="Explore" />
         </NavigationView.MenuItems>

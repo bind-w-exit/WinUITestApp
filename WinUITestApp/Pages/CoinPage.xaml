@@ -11,7 +11,7 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <helpers:PriceChangePercentageConvertor x:Key="PriceChangePercentageConvertor" />
+        <helpers:PriceChangePercentageConverter x:Key="PriceChangePercentageConverter" />
     </Page.Resources>
 
     <Grid RowDefinitions="Auto, Auto, *">
@@ -42,7 +42,7 @@
                 VerticalAlignment="Center"
                 FontSize="20"
                 FontWeight="SemiBold"
-                Text="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage24H, Mode=OneWay, Converter={StaticResource PriceChangePercentageConvertor}}" />
+                Text="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage24H, Mode=OneWay, Converter={StaticResource PriceChangePercentageConverter}}" />
 
             <Border
                 Width="400"
@@ -52,38 +52,38 @@
                 CornerRadius="20">
                 <Grid ColumnDefinitions="*, *, *, *" RowDefinitions="Auto, Auto">
 
-                    <TextBlock HorizontalAlignment="Center" Text="24H" />
+                    <TextBlock x:Uid="Coin_24H" HorizontalAlignment="Center" />
                     <TextBlock
+                        x:Uid="Coin_7D"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center" />
+                    <TextBlock
+                        x:Uid="Coin_30D"
+                        Grid.Column="2"
+                        HorizontalAlignment="Center" />
+                    <TextBlock
+                        x:Uid="Coin_1Y"
+                        Grid.Column="3"
+                        HorizontalAlignment="Center" />
+                    <TextBlock
+                        Grid.Row="1"
+                        HorizontalAlignment="Center"
+                        Text="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage24H, Mode=OneWay, Converter={StaticResource PriceChangePercentageConverter}}" />
+                    <TextBlock
+                        Grid.Row="1"
                         Grid.Column="1"
                         HorizontalAlignment="Center"
-                        Text="7D" />
-                    <TextBlock
-                        Grid.Column="2"
-                        HorizontalAlignment="Center"
-                        Text="30D" />
-                    <TextBlock
-                        Grid.Column="3"
-                        HorizontalAlignment="Center"
-                        Text="1Y" />
-                    <TextBlock
-                        Grid.Row="1"
-                        HorizontalAlignment="Center"
-                        Text="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage24H, Mode=OneWay, Converter={StaticResource PriceChangePercentageConvertor}}" />
-                    <TextBlock
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        HorizontalAlignment="Center"
-                        Text="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage7D, Mode=OneWay, Converter={StaticResource PriceChangePercentageConvertor}}" />
+                        Text="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage7D, Mode=OneWay, Converter={StaticResource PriceChangePercentageConverter}}" />
                     <TextBlock
                         Grid.Row="1"
                         Grid.Column="2"
                         HorizontalAlignment="Center"
-                        Text="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage30D, Mode=OneWay, Converter={StaticResource PriceChangePercentageConvertor}}" />
+                        Text="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage30D, Mode=OneWay, Converter={StaticResource PriceChangePercentageConverter}}" />
                     <TextBlock
                         Grid.Row="1"
                         Grid.Column="3"
                         HorizontalAlignment="Center"
-                        Text="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage1Y, Mode=OneWay, Converter={StaticResource PriceChangePercentageConvertor}}" />
+                        Text="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage1Y, Mode=OneWay, Converter={StaticResource PriceChangePercentageConverter}}" />
                 </Grid>
             </Border>
 
@@ -96,7 +96,7 @@
             <StackPanel Spacing="20">
                 <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
                     <Expander.Header>
-                        <TextBlock Text="Description" />
+                        <TextBlock x:Uid="Coin_Description" />
                     </Expander.Header>
                     <Expander.Content>
                         <TextBlock Text="{x:Bind ViewModel.Coin.Description['en'], Mode=OneWay}" TextWrapping="Wrap" />
@@ -104,7 +104,7 @@
                 </Expander>
 
                 <Border
-                    Width="300"
+                    Width="350"
                     Padding="20"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
@@ -115,13 +115,13 @@
                         RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto"
                         RowSpacing="10">
 
-                        <TextBlock Text="Market Cap Rank" />
-                        <TextBlock Grid.Row="1" Text="Market Cap" />
-                        <TextBlock Grid.Row="2" Text="Trading Volume" />
-                        <TextBlock Grid.Row="3" Text="24H High" />
-                        <TextBlock Grid.Row="4" Text="24H Low" />
-                        <TextBlock Grid.Row="5" Text="Total Supply" />
-                        <TextBlock Grid.Row="6" Text="Avaible Supply" />
+                        <TextBlock x:Uid="Coin_MarketCapRank" Text="Market Cap Rank" />
+                        <TextBlock x:Uid="Coin_MarketCap" Grid.Row="1" />
+                        <TextBlock x:Uid="Coin_TradingVolume" Grid.Row="2" />
+                        <TextBlock x:Uid="Coin_High24H" Grid.Row="3" />
+                        <TextBlock x:Uid="Coin_Low24H" Grid.Row="4" />
+                        <TextBlock x:Uid="Coin_TotalSupply" Grid.Row="5" />
+                        <TextBlock x:Uid="Coin_AvaibleSupply" Grid.Row="6" />
                         <TextBlock
                             Grid.Column="1"
                             HorizontalAlignment="Right"

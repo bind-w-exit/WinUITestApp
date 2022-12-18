@@ -14,7 +14,7 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <helpers:PriceChangePercentageConvertor x:Key="PriceChangePercentageConvertor" />
+        <helpers:PriceChangePercentageConverter x:Key="PriceChangePercentageConverter" />
     </Page.Resources>
 
     <Grid Padding="10,15" RowDefinitions="Auto, Auto, *">
@@ -25,43 +25,43 @@
                 Orientation="Horizontal"
                 Spacing="20">
                 <ComboBox
+                    x:Uid="Market_Currency"
                     Width="90"
                     AllowDrop="False"
-                    Header="Currency"
                     ItemsSource="{x:Bind ViewModel.Currencies}"
                     SelectedItem="{x:Bind ViewModel.SelectedCurrency, Mode=TwoWay}" />
                 <ComboBox
+                    x:Uid="Market_FilterBy"
                     Width="120"
-                    Header="Filter by"
                     ItemsSource="{x:Bind ViewModel.PerPage}"
                     SelectedItem="{x:Bind ViewModel.SelectedPerPage, Mode=TwoWay}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Spacing="2">
-                                <TextBlock Text="Top" />
+                                <TextBlock x:Uid="Market_FilterBy_Top" />
                                 <TextBlock Text="{Binding}" />
                             </StackPanel>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
                 <ComboBox
+                    x:Uid="Market_SortBy"
                     Width="150"
-                    Header="Sort by"
                     ItemsSource="{x:Bind ViewModel.SortBy}"
                     SelectedIndex="0"
                     SelectedItem="{x:Bind ViewModel.SelectedSort, Mode=TwoWay}" />
                 <ComboBox
+                    x:Uid="Market_Timeframe"
                     Width="90"
-                    Header="Timeframe"
                     IsEnabled="False"
                     ItemsSource="{x:Bind ViewModel.Timeframes}"
                     SelectedIndex="0"
                     SelectedItem="{x:Bind ViewModel.SelectedTimeframe, Mode=TwoWay}" />
                 <AutoSuggestBox
+                    x:Uid="Market_Search"
                     Width="200"
                     Height="Auto"
                     VerticalAlignment="Bottom"
-                    PlaceholderText="Search (local)"
                     QueryIcon="Find"
                     Text="{x:Bind ViewModel.SearchField, Mode=TwoWay}" />
             </StackPanel>
@@ -75,25 +75,25 @@
         <Grid
             Grid.Row="1"
             Margin="10"
-            ColumnDefinitions="0.25*,0.5*,*,*,*,*">
-            <TextBlock HorizontalAlignment="Center" Text="Rank" />
+            ColumnDefinitions="0.3*,0.5*,*,*,*,*">
+            <TextBlock x:Uid="Market_Rank" HorizontalAlignment="Center" />
             <TextBlock
+                x:Uid="Market_Coin"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
-                HorizontalAlignment="Center"
-                Text="Coin" />
+                HorizontalAlignment="Center" />
             <TextBlock
+                x:Uid="Market_Price"
                 Grid.Column="3"
-                HorizontalAlignment="Center"
-                Text="Price" />
+                HorizontalAlignment="Center" />
             <TextBlock
                 Grid.Column="4"
                 HorizontalAlignment="Center"
                 Text="{x:Bind ViewModel.SelectedTimeframe, Mode=OneWay}" />
             <TextBlock
+                x:Uid="Market_MarketCap"
                 Grid.Column="5"
-                HorizontalAlignment="Center"
-                Text="Market Cap" />
+                HorizontalAlignment="Center" />
         </Grid>
 
         <ListView
@@ -104,7 +104,7 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="m:CoinMarket">
-                    <Grid Margin="10" ColumnDefinitions="0.25*,0.5*,*,*,*,*">
+                    <Grid Margin="10" ColumnDefinitions="0.3*,0.5*,*,*,*,*">
                         <TextBlock
                             VerticalAlignment="Center"
                             FontWeight="Bold"
@@ -133,7 +133,7 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             FontWeight="Bold"
-                            Text="{x:Bind PriceChangePercentage24H, Converter={StaticResource PriceChangePercentageConvertor}}" />
+                            Text="{x:Bind PriceChangePercentage24H, Converter={StaticResource PriceChangePercentageConverter}}" />
                         <TextBlock
                             Grid.Column="5"
                             HorizontalAlignment="Center"

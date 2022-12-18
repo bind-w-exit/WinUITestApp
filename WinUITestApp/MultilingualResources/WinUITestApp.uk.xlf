@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="uk" original="WINUITESTAPP/STRINGS/EN-US/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="1.0.0.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="WINUITESTAPP/STRINGS/EN-US/RESOURCES.RESW" datatype="resx">
+        <trans-unit id="AppDisplayName" translate="yes" xml:space="preserve">
+          <source>WinUITestApp</source>
+          <target state="new">WinUITestApp</target>
+        </trans-unit>
+        <trans-unit id="AppDescription" translate="yes" xml:space="preserve">
+          <source>WinUITestApp</source>
+          <target state="new">WinUITestApp</target>
+        </trans-unit>
+        <trans-unit id="Settings_Personalization.Text" translate="yes" xml:space="preserve">
+          <source>Personalization</source>
+          <target state="translated">Персоналізація</target>
+        </trans-unit>
+        <trans-unit id="Settings_Theme.Text" translate="yes" xml:space="preserve">
+          <source>Theme</source>
+          <target state="translated">Тема</target>
+        </trans-unit>
+        <trans-unit id="Settings_Theme_Light.Content" translate="yes" xml:space="preserve">
+          <source>Light</source>
+          <target state="translated">Світла</target>
+        </trans-unit>
+        <trans-unit id="Settings_Theme_Dark.Content" translate="yes" xml:space="preserve">
+          <source>Dark</source>
+          <target state="translated">Темна</target>
+        </trans-unit>
+        <trans-unit id="Settings_Theme_Default.Content" translate="yes" xml:space="preserve">
+          <source>Windows theme</source>
+          <target state="translated">Тема системи</target>
+        </trans-unit>
+        <trans-unit id="Settings_About.Text" translate="yes" xml:space="preserve">
+          <source>About this application 💕💕💕</source>
+          <target state="translated">Детальніше про застосунок 💕💕💕</target>
+        </trans-unit>
+        <trans-unit id="Settings_AboutDescription.Text" translate="yes" xml:space="preserve">
+          <source>Digital Cloud Technologies .NET Developer Test Assignment</source>
+          <target state="translated">Тестове завдання для позиції Digital Cloud Technologies .NET Developer</target>
+        </trans-unit>
+        <trans-unit id="SettingsPage_PrivacyTermsLink.Content" translate="yes" xml:space="preserve">
+          <source>Privacy Statement</source>
+          <target state="translated">Декларація конфіденційності</target>
+        </trans-unit>
+        <trans-unit id="SettingsPage_PrivacyTermsLink.NavigateUri" translate="yes" xml:space="preserve">
+          <source>https://testApp/</source>
+          <target state="new">https://testApp/</target>
+        </trans-unit>
+        <trans-unit id="LocalizationChangedMessage.Text" translate="yes" xml:space="preserve">
+          <source>You need to restart the application.</source>
+          <target state="translated">Зміни відбудуться після перезавантаження застосунку.</target>
+        </trans-unit>
+        <trans-unit id="Nav_Host_Explore.Content" translate="yes" xml:space="preserve">
+          <source>Explore</source>
+          <target state="translated">Переглянути</target>
+        </trans-unit>
+        <trans-unit id="Nav_Host_Market.Content" translate="yes" xml:space="preserve">
+          <source>Market</source>
+          <target state="translated">Ринок</target>
+        </trans-unit>
+        <trans-unit id="Nav_Host_Portfolio.Content" translate="yes" xml:space="preserve">
+          <source>Portfolio</source>
+          <target state="translated">Портфоліо</target>
+        </trans-unit>
+        <trans-unit id="Nav_Host_Search.Content" translate="yes" xml:space="preserve">
+          <source>Search</source>
+          <target state="translated">Пошук</target>
+        </trans-unit>
+        <trans-unit id="Market_Coin.Text" translate="yes" xml:space="preserve">
+          <source>Coin</source>
+          <target state="translated">Монета</target>
+        </trans-unit>
+        <trans-unit id="Market_Currency.Header" translate="yes" xml:space="preserve">
+          <source>Currency</source>
+          <target state="translated">Валюта</target>
+        </trans-unit>
+        <trans-unit id="Market_FilterBy.Header" translate="yes" xml:space="preserve">
+          <source>Filter by</source>
+          <target state="translated">Фільтр</target>
+        </trans-unit>
+        <trans-unit id="Market_MarketCap.Text" translate="yes" xml:space="preserve">
+          <source>Market Cap</source>
+          <target state="translated">Капіталізація</target>
+        </trans-unit>
+        <trans-unit id="Market_Price.Text" translate="yes" xml:space="preserve">
+          <source>Price</source>
+          <target state="translated">Вартість</target>
+        </trans-unit>
+        <trans-unit id="Market_Search.PlaceholderText" translate="yes" xml:space="preserve">
+          <source>Search (local)</source>
+          <target state="needs-review-translation">Пошук</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="Market_SortBy.Header" translate="yes" xml:space="preserve">
+          <source>Sort by</source>
+          <target state="translated">Сортувати</target>
+        </trans-unit>
+        <trans-unit id="Market_Sort_Change" translate="yes" xml:space="preserve">
+          <source>% Change</source>
+          <target state="translated">% Динаміка</target>
+        </trans-unit>
+        <trans-unit id="Market_Sort_MarketCap" translate="yes" xml:space="preserve">
+          <source>Market Cap</source>
+          <target state="translated">Капіталізація</target>
+        </trans-unit>
+        <trans-unit id="Market_Sort_Name" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <target state="translated">Назва</target>
+        </trans-unit>
+        <trans-unit id="Market_Sort_Price" translate="yes" xml:space="preserve">
+          <source>Price</source>
+          <target state="translated">Вартість</target>
+        </trans-unit>
+        <trans-unit id="Market_FilterBy_Top.Text" translate="yes" xml:space="preserve">
+          <source>Top</source>
+          <target state="translated">Топ</target>
+        </trans-unit>
+        <trans-unit id="Market_Rank.Text" translate="yes" xml:space="preserve">
+          <source>Rank</source>
+          <target state="translated">Рейтинг</target>
+        </trans-unit>
+        <trans-unit id="Market_Timeframe.Header" translate="yes" xml:space="preserve">
+          <source>Timeframe</source>
+          <target state="translated">Інтервал часу:</target>
+        </trans-unit>
+        <trans-unit id="Coin_1Y.Text" translate="yes" xml:space="preserve">
+          <source>1Y</source>
+          <target state="translated">1 Рік</target>
+        </trans-unit>
+        <trans-unit id="Coin_24H.Text" translate="yes" xml:space="preserve">
+          <source>24H</source>
+          <target state="translated">24 Год.</target>
+        </trans-unit>
+        <trans-unit id="Coin_30D.Text" translate="yes" xml:space="preserve">
+          <source>30D</source>
+          <target state="translated">30 Діб</target>
+        </trans-unit>
+        <trans-unit id="Coin_7D.Text" translate="yes" xml:space="preserve">
+          <source>7D</source>
+          <target state="translated">7 Діб</target>
+        </trans-unit>
+        <trans-unit id="Coin_AvaibleSupply.Text" translate="yes" xml:space="preserve">
+          <source>Avaible Supply</source>
+          <target state="translated">Кількість в обігу</target>
+        </trans-unit>
+        <trans-unit id="Coin_Description.Text" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target state="translated">Опис</target>
+        </trans-unit>
+        <trans-unit id="Coin_High24H.Text" translate="yes" xml:space="preserve">
+          <source>24H High</source>
+          <target state="translated">Максимум за 24 години</target>
+        </trans-unit>
+        <trans-unit id="Coin_Low24H.Text" translate="yes" xml:space="preserve">
+          <source>24H Low</source>
+          <target state="translated">Мінімум за 24 години</target>
+        </trans-unit>
+        <trans-unit id="Coin_MarketCap.Text" translate="yes" xml:space="preserve">
+          <source>Market Cap</source>
+          <target state="translated">Ринкова капіталізація</target>
+        </trans-unit>
+        <trans-unit id="Coin_MarketCapRank.Text" translate="yes" xml:space="preserve">
+          <source>Market Cap Rank</source>
+          <target state="translated">Рейтинг ринкової капіталізації</target>
+        </trans-unit>
+        <trans-unit id="Coin_TotalSupply.Text" translate="yes" xml:space="preserve">
+          <source>Total Supply</source>
+          <target state="translated">Загальний обсяг пропозиції</target>
+        </trans-unit>
+        <trans-unit id="Coin_TradingVolume.Text" translate="yes" xml:space="preserve">
+          <source>Trading Volume</source>
+          <target state="translated">Обсяг торгів</target>
+        </trans-unit>
+        <trans-unit id="Settings_Language.Header" translate="yes" xml:space="preserve">
+          <source>Language</source>
+          <target state="translated">Мова</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

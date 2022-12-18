@@ -12,7 +12,7 @@ namespace WinUITestApp
     /// </summary>
     public sealed partial class App : Application
     {
-        private Window m_window;
+        public static Window MainWindow { get; private set; }
 
         /// <summary>
         /// Gets the <see cref="IServiceProvider"/> instance to resolve application services.
@@ -42,8 +42,8 @@ namespace WinUITestApp
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
-            m_window = new MainWindow();
-            m_window.Activate();
+            MainWindow = new MainWindow();
+            MainWindow.Activate();
         }
 
         /// <summary>
@@ -55,12 +55,16 @@ namespace WinUITestApp
 
             // Viewmodels
             services.AddScoped<MarketViewModel>();
+            services.AddScoped<SettingsViewModel>();
             services.AddTransient<CoinViewModel>();
 
             // Services
             HttpClient httpClient = new HttpClient();
             services.AddSingleton<ICryptoApiService>(new CoinGeckoApiService(httpClient));
             services.AddSingleton<INavigationService>(new NavigationService());
+            services.AddSingleton<ILocalSettingsService, LocalSettingsService>();
+            services.AddSingleton<ILocalizationService, LocalizationService>();
+            services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
 
             return services.BuildServiceProvider();
         }
