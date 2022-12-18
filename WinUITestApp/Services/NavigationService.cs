@@ -1,37 +1,36 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 using System;
 
-namespace WinUITestApp.Services
+namespace WinUITestApp.Services;
+
+public class NavigationService : INavigationService
 {
-    public class NavigationService : INavigationService
+    public bool CanGoBack => ContentFrame != null && ContentFrame.CanGoBack;
+
+    public Frame ContentFrame { get; set; }
+
+    public bool GoBack()
     {
-        public bool CanGoBack => ContentFrame != null && ContentFrame.CanGoBack;
-
-        public Frame ContentFrame { get; set; }
-
-        public bool GoBack()
+        if (CanGoBack)
         {
-            if (CanGoBack)
-            {
-                ContentFrame.GoBack();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            ContentFrame.GoBack();
+            return true;
         }
-
-        public bool NavigateTo(string pageKey, object parameter = null)
+        else
         {
-            if (pageKey == null)
-                return false;
-            else
-            {
-                ContentFrame.Navigate(Type.GetType($"WinUITestApp.Pages.{pageKey}"), parameter);
-                return true;
-            }
+            return false;
         }
-
     }
+
+    public bool NavigateTo(string pageKey, object parameter = null)
+    {
+        if (pageKey == null)
+            return false;
+        else
+        {
+            ContentFrame.Navigate(Type.GetType($"WinUITestApp.Pages.{pageKey}"), parameter);
+            return true;
+        }
+    }
+
 }

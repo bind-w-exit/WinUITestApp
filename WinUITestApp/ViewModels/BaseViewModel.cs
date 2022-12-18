@@ -1,8 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace WinUITestApp.ViewModels
+namespace WinUITestApp.ViewModels;
+
+public class BaseViewModel : ObservableObject
 {
-    public class BaseViewModel : ObservableObject
-    {
-    }
 }

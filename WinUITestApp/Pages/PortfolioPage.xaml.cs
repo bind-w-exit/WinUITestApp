@@ -1,12 +1,11 @@
 using Microsoft.UI.Xaml.Controls;
 
-namespace WinUITestApp.Pages
+namespace WinUITestApp.Pages;
+
+public sealed partial class PortfolioPage : Page
 {
-    public sealed partial class PortfolioPage : Page
+    public PortfolioPage()
     {
-        public PortfolioPage()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

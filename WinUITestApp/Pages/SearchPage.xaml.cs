@@ -1,12 +1,11 @@
 using Microsoft.UI.Xaml.Controls;
 
-namespace WinUITestApp.Pages
+namespace WinUITestApp.Pages;
+
+public sealed partial class SearchPage : Page
 {
-    public sealed partial class SearchPage : Page
+    public SearchPage()
     {
-        public SearchPage()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

@@ -5,111 +5,110 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using WinUITestApp.Models;
 
-namespace WinUITestApp.Services
+namespace WinUITestApp.Services;
+
+public class CoinGeckoApiService : ICryptoApiService
 {
-    public class CoinGeckoApiService : ICryptoApiService
+    private readonly HttpClient _httpClient;
+    private const string baseUri = "https://api.coingecko.com/api/v3";
+
+    public CoinGeckoApiService(HttpClient httpClient)
     {
-        private readonly HttpClient _httpClient;
-        private const string baseUri = "https://api.coingecko.com/api/v3";
+        _httpClient = httpClient;
+    }
 
-        public CoinGeckoApiService(HttpClient httpClient)
+    public async Task<List<CoinMarket>> GetCoinMarkets()
+    {
+        List<CoinMarket> markets = null;
+
+        var uri = baseUri +
+            "/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50";
+
+        using (var response = await _httpClient.GetAsync(uri))
         {
-            _httpClient = httpClient;
-        }
-
-        public async Task<List<CoinMarket>> GetCoinMarkets()
-        {
-            List<CoinMarket> markets = null;
-
-            var uri = baseUri +
-                "/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50";
-
-            using (var response = await _httpClient.GetAsync(uri))
+            if (response.IsSuccessStatusCode)
             {
-                if (response.IsSuccessStatusCode)
+                var responseContent = await response.Content.ReadAsStringAsync();
+                try
                 {
-                    var responseContent = await response.Content.ReadAsStringAsync();
-                    try
-                    {
-                        markets = JsonConvert.DeserializeObject<List<CoinMarket>>(responseContent);
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new HttpRequestException(ex.Message);
-                    }
+                    markets = JsonConvert.DeserializeObject<List<CoinMarket>>(responseContent);
                 }
-                else
+                catch (Exception ex)
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    throw new HttpRequestException(ex.Message);
                 }
             }
-
-            return markets;
+            else
+            {
+                throw new Exception(response.ReasonPhrase);
+            }
         }
 
-        public async Task<List<CoinMarket>> GetCoinMarkets(string targetCurrency, int perPage, bool sparkline)
+        return markets;
+    }
+
+    public async Task<List<CoinMarket>> GetCoinMarkets(string targetCurrency, int perPage, bool sparkline)
+    {
+        //Imitation loading
+        Task.Delay(3000).Wait();
+
+        List <CoinMarket> markets = null;
+
+        var uri = baseUri + "/coins/markets?vs_currency="
+            + targetCurrency.ToLower() + "&order=market_cap_desc&per_page="
+            + perPage + "&sparkline=" + sparkline.ToString().ToLower()
+            + "&price_change_percentage=1h%2C24h%2C7d";
+
+        using (var response = await _httpClient.GetAsync(uri))
         {
-            //Imitation loading
-            Task.Delay(3000).Wait();
-
-            List <CoinMarket> markets = null;
-
-            var uri = baseUri + "/coins/markets?vs_currency="
-                + targetCurrency.ToLower() + "&order=market_cap_desc&per_page="
-                + perPage + "&sparkline=" + sparkline.ToString().ToLower()
-                + "&price_change_percentage=1h%2C24h%2C7d";
-
-            using (var response = await _httpClient.GetAsync(uri))
+            if (response.IsSuccessStatusCode)
             {
-                if (response.IsSuccessStatusCode)
+                var responseContent = await response.Content.ReadAsStringAsync();
+                try
                 {
-                    var responseContent = await response.Content.ReadAsStringAsync();
-                    try
-                    {
-                        markets = JsonConvert.DeserializeObject<List<CoinMarket>>(responseContent);
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception(ex.Message);
-                    }
+                    markets = JsonConvert.DeserializeObject<List<CoinMarket>>(responseContent);
                 }
-                else
+                catch (Exception ex)
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    throw new Exception(ex.Message);
                 }
             }
-
-            return markets;
+            else
+            {
+                throw new Exception(response.ReasonPhrase);
+            }
         }
 
-        public async Task<CoinByIdFullData> GetCoinById(string id)
+        return markets;
+    }
+
+    public async Task<CoinByIdFullData> GetCoinById(string id)
+    {
+        var coin = new CoinByIdFullData();
+
+        var uri = baseUri + "/coins/" + id
+            + "?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=true";
+
+        using (var response = await _httpClient.GetAsync(1 + uri))
         {
-            var coin = new CoinByIdFullData();
-
-            var uri = baseUri + "/coins/" + id
-                + "?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=true";
-
-            using (var response = await _httpClient.GetAsync(1 + uri))
+            if (response.IsSuccessStatusCode)
             {
-                if (response.IsSuccessStatusCode)
+                var responseContent = await response.Content.ReadAsStringAsync();
+                try
                 {
-                    var responseContent = await response.Content.ReadAsStringAsync();
-                    try
-                    {
-                        coin = JsonConvert.DeserializeObject<CoinByIdFullData>(responseContent);
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception(ex.Message);
-                    }
+                    coin = JsonConvert.DeserializeObject<CoinByIdFullData>(responseContent);
                 }
-                else
+                catch (Exception ex)
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    throw new Exception(ex.Message);
                 }
             }
-
-            return coin;
+            else
+            {
+                throw new Exception(response.ReasonPhrase);
+            }
         }
+
+        return coin;
     }
 }

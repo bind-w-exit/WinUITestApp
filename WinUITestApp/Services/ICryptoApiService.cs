@@ -2,12 +2,11 @@
 using System.Threading.Tasks;
 using WinUITestApp.Models;
 
-namespace WinUITestApp.Services
+namespace WinUITestApp.Services;
+
+public interface ICryptoApiService
 {
-    public interface ICryptoApiService
-    {
-        public Task<List<CoinMarket>> GetCoinMarkets();
-        public Task<List<CoinMarket>> GetCoinMarkets(string targetCurrency, int perPage, bool sparkline);
-        public Task<CoinByIdFullData> GetCoinById(string id);
-    }
+    public Task<List<CoinMarket>> GetCoinMarkets();
+    public Task<List<CoinMarket>> GetCoinMarkets(string targetCurrency, int perPage, bool sparkline);
+    public Task<CoinByIdFullData> GetCoinById(string id);
 }
