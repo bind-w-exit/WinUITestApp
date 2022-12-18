@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -108,6 +109,12 @@ namespace WinUITestApp.ViewModels
         [ObservableProperty]
         private string searchField;
 
+        [ObservableProperty]
+        private bool isUpdateMarketsFailad;
+
+        [ObservableProperty]
+        private bool isUpdateMarketsRunning;
+
         public MarketViewModel(ICryptoApiService cryptoApiService, INavigationService navigationService)
         {
             _cryptoApiService = cryptoApiService;    
@@ -118,6 +125,7 @@ namespace WinUITestApp.ViewModels
             selectedSort = SortBy[2];
             selectedTimeframe = Timeframes[1];
             searchField = "";
+            isUpdateMarketsFailad = false;
 
             UpdateMarketsCommand.Execute(null);
         }
@@ -125,12 +133,18 @@ namespace WinUITestApp.ViewModels
         [RelayCommand]
         private async Task UpdateMarketsAsync()
         {
-            var res = await Task.Run(() => _cryptoApiService.GetCoinMarkets(selectedCurrency, selectedPerPage, false));
-
-            if (res != null)
+            IsUpdateMarketsRunning = true;
+            IsUpdateMarketsFailad = false;
+            try
             {
-                notFilteredMarkets = res;
+                var task = await Task.Run(() => _cryptoApiService.GetCoinMarkets(selectedCurrency, selectedPerPage, false));
+                notFilteredMarkets = task;
                 SortMarkets(SearchFilter(SearchField)); // TODO: func refactoring 🥲
+                IsUpdateMarketsRunning = false;
+            }
+            catch (Exception)
+            {
+                IsUpdateMarketsFailad = true;
             }
         }
 

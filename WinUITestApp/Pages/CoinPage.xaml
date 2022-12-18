@@ -15,7 +15,11 @@
     </Page.Resources>
 
     <Grid RowDefinitions="Auto, Auto, *">
-
+        <InfoBar
+            Title="Error"
+            IsOpen="{x:Bind ViewModel.IsErrorMessageOpen}"
+            Message="{x:Bind ViewModel.ErrorMessage}"
+            Severity="Error" />
         <StackPanel
             Padding="20"
             Orientation="Horizontal"

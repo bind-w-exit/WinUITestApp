@@ -24,34 +24,24 @@ namespace WinUITestApp.Services
             var uri = baseUri +
                 "/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50";
 
-            try
+            using (var response = await _httpClient.GetAsync(uri))
             {
-                using (var response = await _httpClient.GetAsync(uri))
+                if (response.IsSuccessStatusCode)
                 {
-                    if (response.IsSuccessStatusCode)
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    try
                     {
-                        var responseContent = await response.Content.ReadAsStringAsync();
-                        try
-                        {
-                            markets = JsonConvert.DeserializeObject<List<CoinMarket>>(responseContent);
-                        }
-                        //TODO: catch exception
-                        catch (Exception)
-                        {
-                            //throw new HttpRequestException(e.Message);
-                        }
+                        markets = JsonConvert.DeserializeObject<List<CoinMarket>>(responseContent);
                     }
-                    //TODO: catch exception
-                    else
+                    catch (Exception ex)
                     {
-                        //throw new Exception(response.ReasonPhrase);
+                        throw new HttpRequestException(ex.Message);
                     }
                 }
-            }
-            //TODO: catch exception
-            catch (Exception)
-            {
-                //throw;
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
             }
 
             return markets;
@@ -59,6 +49,9 @@ namespace WinUITestApp.Services
 
         public async Task<List<CoinMarket>> GetCoinMarkets(string targetCurrency, int perPage, bool sparkline)
         {
+            //Imitation loading
+            Task.Delay(3000).Wait();
+
             List <CoinMarket> markets = null;
 
             var uri = baseUri + "/coins/markets?vs_currency="
@@ -66,33 +59,24 @@ namespace WinUITestApp.Services
                 + perPage + "&sparkline=" + sparkline.ToString().ToLower()
                 + "&price_change_percentage=1h%2C24h%2C7d";
 
-            try
+            using (var response = await _httpClient.GetAsync(uri))
             {
-                using (var response = await _httpClient.GetAsync(uri))
+                if (response.IsSuccessStatusCode)
                 {
-                    if (response.IsSuccessStatusCode)
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    try
                     {
-                        var responseContent = await response.Content.ReadAsStringAsync();
-                        try
-                        {
-                            markets = JsonConvert.DeserializeObject<List<CoinMarket>>(responseContent);
-                        }
-                        //TODO: catch exception
-                        catch (Exception)
-                        {
-                        }
+                        markets = JsonConvert.DeserializeObject<List<CoinMarket>>(responseContent);
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        //TODO: catch exception
-                        //throw new Exception(response.ReasonPhrase);
+                        throw new Exception(ex.Message);
                     }
                 }
-            }
-            //TODO: catch exception
-            catch (Exception)
-            {
-                //throw;
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
             }
 
             return markets;
@@ -105,33 +89,24 @@ namespace WinUITestApp.Services
             var uri = baseUri + "/coins/" + id
                 + "?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=true";
 
-            try
+            using (var response = await _httpClient.GetAsync(1 + uri))
             {
-                using (var response = await _httpClient.GetAsync(uri))
+                if (response.IsSuccessStatusCode)
                 {
-                    if (response.IsSuccessStatusCode)
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    try
                     {
-                        var responseContent = await response.Content.ReadAsStringAsync();
-                        try
-                        {
-                            coin = JsonConvert.DeserializeObject<CoinByIdFullData>(responseContent);
-                        }
-                        //TODO: catch exception
-                        catch (Exception)
-                        {
-                        }
+                        coin = JsonConvert.DeserializeObject<CoinByIdFullData>(responseContent);
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        //TODO: catch exception
-                        //throw new Exception(response.ReasonPhrase);
+                        throw new Exception(ex.Message);
                     }
                 }
-            }
-            //TODO: catch exception
-            catch (Exception)
-            {
-                //throw;
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
             }
 
             return coin;
