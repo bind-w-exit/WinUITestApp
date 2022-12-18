@@ -67,7 +67,7 @@
     <value>Вартість</value>
   </data>
   <data name="Market_Search.PlaceholderText" xml:space="preserve">
-    <value>Пошук</value>
+    <value>Пошук (локально)</value>
   </data>
   <data name="Market_SortBy.Header" xml:space="preserve">
     <value>Сортувати</value>

@@ -48,7 +48,7 @@
                 Width="400"
                 Padding="5"
                 HorizontalAlignment="Center"
-                Background="{ThemeResource SystemChromeMediumLowColor}"
+                Background="{ThemeResource SystemChromeAltHighColor}"
                 CornerRadius="20">
                 <Grid ColumnDefinitions="*, *, *, *" RowDefinitions="Auto, Auto">
 
@@ -104,11 +104,11 @@
                 </Expander>
 
                 <Border
-                    Width="350"
+                    Width="450"
                     Padding="20"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
-                    Background="{ThemeResource SystemChromeMediumLowColor}"
+                    Background="{ThemeResource SystemChromeAltHighColor}"
                     CornerRadius="20">
                     <Grid
                         ColumnDefinitions="*, *"

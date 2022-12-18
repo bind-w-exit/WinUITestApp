@@ -92,8 +92,7 @@
         </trans-unit>
         <trans-unit id="Market_Search.PlaceholderText" translate="yes" xml:space="preserve">
           <source>Search (local)</source>
-          <target state="needs-review-translation">Пошук</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Пошук (локально)</target>
         </trans-unit>
         <trans-unit id="Market_SortBy.Header" translate="yes" xml:space="preserve">
           <source>Sort by</source>
