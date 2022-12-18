@@ -21,9 +21,6 @@ namespace WinUITestApp.Services
         {
             List<CoinMarket> markets = null;
 
-            //Imitation loading
-            Task.Delay(3000).Wait();
-
             var uri = baseUri +
                 "/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50";
 
@@ -64,9 +61,6 @@ namespace WinUITestApp.Services
         {
             List <CoinMarket> markets = null;
 
-            //Imitation loading
-            Task.Delay(2000).Wait();
-
             var uri = baseUri + "/coins/markets?vs_currency="
                 + targetCurrency.ToLower() + "&order=market_cap_desc&per_page="
                 + perPage + "&sparkline=" + sparkline.ToString().ToLower()
@@ -106,13 +100,10 @@ namespace WinUITestApp.Services
 
         public async Task<CoinByIdFullData> GetCoinById(string id)
         {
-            //Imitation loading
-            Task.Delay(1000).Wait();
-
             var coin = new CoinByIdFullData();
 
             var uri = baseUri + "/coins/" + id
-                + "?localization=false&tickers=false&community_data=false&developer_data=false";
+                + "?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=true";
 
             try
             {

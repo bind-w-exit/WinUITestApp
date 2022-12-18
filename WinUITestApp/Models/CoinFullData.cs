@@ -10,7 +10,7 @@ namespace WinUITestApp.Models
         public Image Image { get; set; }
 
         [JsonProperty("market_data", NullValueHandling = NullValueHandling.Ignore)]
-        public MarketData MarketData { get; set; }
+        public CoinByIdMarketData MarketData { get; set; }
     }
 
     public class Image
@@ -23,5 +23,11 @@ namespace WinUITestApp.Models
 
         [JsonProperty("large")]
         public string Large { get; set; }
+    }
+
+    public class CoinByIdMarketData : MarketData
+    {
+        [JsonProperty("sparkline_7d", NullValueHandling = NullValueHandling.Ignore)]
+        public SparklineIn7D Sparkline7D { get; set; }
     }
 }

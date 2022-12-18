@@ -13,6 +13,9 @@ namespace WinUITestApp.ViewModels
         [ObservableProperty]
         private CoinByIdFullData coin;
 
+        [ObservableProperty]
+        private string nameAndSymbol;
+
         public CoinViewModel(ICryptoApiService cryptoApiService)
         {
             _cryptoApiService = cryptoApiService;
@@ -22,6 +25,11 @@ namespace WinUITestApp.ViewModels
         private async Task UpdateCoinAsync(string id)
         {
             Coin = await Task.Run(() => _cryptoApiService.GetCoinById(id));
+        }
+
+        partial void OnCoinChanged(CoinByIdFullData value)
+        {
+            NameAndSymbol = string.Format("{0} ({1})", value.Name, value.Symbol.ToUpper());
         }
     }
 }

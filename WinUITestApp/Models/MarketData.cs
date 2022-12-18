@@ -26,13 +26,13 @@ namespace WinUITestApp.Models
         public Dictionary<string, decimal?> PriceChange24HInCurrency { get; set; }
 
         [JsonProperty("price_change_percentage_7d")]
-        public string PriceChangePercentage7D { get; set; }
+        public double? PriceChangePercentage7D { get; set; }
 
         [JsonProperty("price_change_percentage_30d")]
-        public string PriceChangePercentage30D { get; set; }
+        public double? PriceChangePercentage30D { get; set; }
 
         [JsonProperty("price_change_percentage_1y")]
-        public string PriceChangePercentage1Y { get; set; }
+        public double? PriceChangePercentage1Y { get; set; }
 
         [JsonProperty("price_change_percentage_1h_in_currency")]
         public Dictionary<string, double?> PriceChangePercentage1HInCurrency { get; set; }
