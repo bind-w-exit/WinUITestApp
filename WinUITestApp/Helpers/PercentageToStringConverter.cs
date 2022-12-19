@@ -3,7 +3,7 @@ using System;
 
 namespace WinUITestApp.Helpers;
 
-public class PriceChangePercentageConverter : IValueConverter
+public class PercentageToStringConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)
     {

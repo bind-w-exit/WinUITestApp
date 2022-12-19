@@ -11,15 +11,18 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <helpers:PriceChangePercentageConverter x:Key="PriceChangePercentageConverter" />
+        <helpers:PercentageToStringConverter x:Key="PercentageToStringConverter" />
+        <helpers:PercentageToColorConverter x:Key="PercentageToColorConverter" />
     </Page.Resources>
 
     <Grid RowDefinitions="Auto, Auto, *">
+
         <InfoBar
             x:Uid="Coin_Error"
             IsOpen="{x:Bind ViewModel.IsErrorMessageOpen}"
             Message="{x:Bind ViewModel.ErrorMessage}"
             Severity="Error" />
+
         <StackPanel
             Padding="20"
             Orientation="Horizontal"
@@ -37,25 +40,29 @@
             Padding="20"
             Orientation="Horizontal"
             Spacing="20">
+
             <TextBlock
                 VerticalAlignment="Center"
                 FontSize="20"
                 FontWeight="SemiBold"
                 Text="{x:Bind ViewModel.Coin.MarketData.CurrentPrice['usd'], Mode=OneWay}" />
+
             <TextBlock
                 VerticalAlignment="Center"
                 FontSize="20"
                 FontWeight="SemiBold"
-                Text="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage24H, Mode=OneWay, Converter={StaticResource PriceChangePercentageConverter}}" />
+                Foreground="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage24H, Mode=OneWay, Converter={StaticResource PercentageToColorConverter}}"
+                Text="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage24H, Mode=OneWay, Converter={StaticResource PercentageToStringConverter}}" />
 
             <Border
-                Width="400"
-                Padding="5"
+                Padding="15"
                 HorizontalAlignment="Center"
                 Background="{ThemeResource SystemChromeAltHighColor}"
                 CornerRadius="20">
-                <Grid ColumnDefinitions="*, *, *, *" RowDefinitions="Auto, Auto">
-
+                <Grid
+                    ColumnDefinitions="*, *, *, *"
+                    ColumnSpacing="20"
+                    RowDefinitions="Auto, Auto">
                     <TextBlock x:Uid="Coin_24H" HorizontalAlignment="Center" />
                     <TextBlock
                         x:Uid="Coin_7D"
@@ -72,22 +79,26 @@
                     <TextBlock
                         Grid.Row="1"
                         HorizontalAlignment="Center"
-                        Text="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage24H, Mode=OneWay, Converter={StaticResource PriceChangePercentageConverter}}" />
+                        Foreground="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage24H, Mode=OneWay, Converter={StaticResource PercentageToColorConverter}}"
+                        Text="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage24H, Mode=OneWay, Converter={StaticResource PercentageToStringConverter}}" />
                     <TextBlock
                         Grid.Row="1"
                         Grid.Column="1"
                         HorizontalAlignment="Center"
-                        Text="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage7D, Mode=OneWay, Converter={StaticResource PriceChangePercentageConverter}}" />
+                        Foreground="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage7D, Mode=OneWay, Converter={StaticResource PercentageToColorConverter}}"
+                        Text="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage7D, Mode=OneWay, Converter={StaticResource PercentageToStringConverter}}" />
                     <TextBlock
                         Grid.Row="1"
                         Grid.Column="2"
                         HorizontalAlignment="Center"
-                        Text="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage30D, Mode=OneWay, Converter={StaticResource PriceChangePercentageConverter}}" />
+                        Foreground="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage30D, Mode=OneWay, Converter={StaticResource PercentageToColorConverter}}"
+                        Text="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage30D, Mode=OneWay, Converter={StaticResource PercentageToStringConverter}}" />
                     <TextBlock
                         Grid.Row="1"
                         Grid.Column="3"
                         HorizontalAlignment="Center"
-                        Text="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage1Y, Mode=OneWay, Converter={StaticResource PriceChangePercentageConverter}}" />
+                        Foreground="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage1Y, Mode=OneWay, Converter={StaticResource PercentageToColorConverter}}"
+                        Text="{x:Bind ViewModel.Coin.MarketData.PriceChangePercentage1Y, Mode=OneWay, Converter={StaticResource PercentageToStringConverter}}" />
                 </Grid>
             </Border>
 
@@ -98,6 +109,7 @@
             Padding="20"
             VerticalScrollBarVisibility="Visible">
             <StackPanel Spacing="20">
+
                 <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
                     <Expander.Header>
                         <TextBlock x:Uid="Coin_Description" />
@@ -108,15 +120,15 @@
                 </Expander>
 
                 <Border
-                    Width="450"
                     Padding="20"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
                     Background="{ThemeResource SystemChromeAltHighColor}"
                     CornerRadius="20">
                     <Grid
-                        ColumnDefinitions="*, *"
-                        RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto"
+                        ColumnDefinitions="Auto, Auto"
+                        ColumnSpacing="50"
+                        RowDefinitions="*, *, *, *, *, *, *"
                         RowSpacing="10">
 
                         <TextBlock x:Uid="Coin_MarketCapRank" Text="Market Cap Rank" />

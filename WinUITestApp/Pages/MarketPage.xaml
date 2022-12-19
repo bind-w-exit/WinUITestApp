@@ -14,7 +14,8 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <helpers:PriceChangePercentageConverter x:Key="PriceChangePercentageConverter" />
+        <helpers:PercentageToStringConverter x:Key="PercentageToStringConverter" />
+        <helpers:PercentageToColorConverter x:Key="PercentageToColorConverter" />
     </Page.Resources>
 
     <Grid Padding="10,15" RowDefinitions="Auto, Auto, Auto, *">
@@ -134,7 +135,8 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             FontWeight="Bold"
-                            Text="{x:Bind PriceChangePercentage24H, Converter={StaticResource PriceChangePercentageConverter}}" />
+                            Foreground="{x:Bind PriceChangePercentage24H, Converter={StaticResource PercentageToColorConverter}}"
+                            Text="{x:Bind PriceChangePercentage24H, Converter={StaticResource PercentageToStringConverter}}" />
                         <TextBlock
                             Grid.Column="5"
                             HorizontalAlignment="Center"
