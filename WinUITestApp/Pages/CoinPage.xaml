@@ -16,7 +16,7 @@
 
     <Grid RowDefinitions="Auto, Auto, *">
         <InfoBar
-            Title="Error"
+            x:Uid="Coin_Error"
             IsOpen="{x:Bind ViewModel.IsErrorMessageOpen}"
             Message="{x:Bind ViewModel.ErrorMessage}"
             Severity="Error" />

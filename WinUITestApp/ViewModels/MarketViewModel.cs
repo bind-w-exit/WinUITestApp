@@ -130,24 +130,6 @@ public partial class MarketViewModel : BaseViewModel
         UpdateMarketsCommand.Execute(null);
     }
 
-    [RelayCommand]
-    private async Task UpdateMarketsAsync()
-    {
-        IsUpdateMarketsRunning = true;
-        IsUpdateMarketsFailad = false;
-        try
-        {
-            var task = await Task.Run(() => _cryptoApiService.GetCoinMarkets(selectedCurrency, selectedPerPage, false));
-            notFilteredMarkets = task;
-            SortMarkets(SearchFilter(SearchField)); // TODO: func refactoring 🥲
-            IsUpdateMarketsRunning = false;
-        }
-        catch (Exception)
-        {
-            IsUpdateMarketsFailad = true;
-        }
-    }
-
     partial void OnSelectedPerPageChanged(int value)
     {
         if (UpdateMarketsCommand.CanExecute(null))
@@ -164,65 +146,81 @@ public partial class MarketViewModel : BaseViewModel
         }
     }
 
-    partial void OnSelectedSortChanged(string value)
+    [RelayCommand]
+    private async Task UpdateMarketsAsync()
     {
-        SortMarkets(Markets);
+        IsUpdateMarketsRunning = true;
+        IsUpdateMarketsFailad = false;
+        try
+        {
+            notFilteredMarkets = await Task.Run(() => _cryptoApiService.GetCoinMarkets(selectedCurrency, selectedPerPage, false));
+            Markets = FilterAndSortMarkets(notFilteredMarkets, SearchField, SelectedSort);
+            IsUpdateMarketsRunning = false;
+        }
+        catch (Exception)
+        {
+            IsUpdateMarketsFailad = true;
+        }
     }
 
-    partial void OnSelectedMarketChanged(CoinMarket value)
+    partial void OnSelectedSortChanged(string value)
     {
-        if(SelectedMarket != null)
-        {
-            _navigationService.NavigateTo(nameof(CoinPage), value.Id);
-            SelectedMarket = null;  // TODO: Item navigation based on tapped 🙈
-        }             
+        Markets = SortMarkets(Markets, value);
     }
 
     partial void OnSearchFieldChanged(string value)
     {
-        SortMarkets(SearchFilter(value));
+        Markets = FilterAndSortMarkets(notFilteredMarkets, value, SelectedSort);
     }
 
-    List<CoinMarket> SearchFilter(string value)
+    partial void OnSelectedMarketChanged(CoinMarket value)
     {
-        if (string.IsNullOrWhiteSpace(value))
+        if (SelectedMarket != null)
         {
-            return notFilteredMarkets;             
+            _navigationService.NavigateTo(nameof(CoinPage), value.Id);
+            SelectedMarket = null;  // TODO: Item navigation based on tapped 🙈
+        }
+    }
+
+    static List<CoinMarket> FilterAndSortMarkets(List<CoinMarket> markets, string filter, string sort)
+    {
+        return SortMarkets(FilterMarkets(markets, filter), sort);
+    }
+
+    static List<CoinMarket> FilterMarkets(List<CoinMarket> markets, string filter)
+    {
+        if (string.IsNullOrWhiteSpace(filter))
+        {
+            return markets;             
         }
         else
         {
-            return notFilteredMarkets?.Where(coin => coin.Name.ToLower().Contains(value.ToLower())
-                || coin.Symbol.ToLower().Contains(value.ToLower())).ToList();
+            return markets?.Where(coin => coin.Name.ToLower().Contains(filter.ToLower())
+                || coin.Symbol.ToLower().Contains(filter.ToLower())).ToList();
         }
     }
-        
-    void SortMarkets(List<CoinMarket> mar)
+
+    static List<CoinMarket> SortMarkets(List<CoinMarket> markets, string sort)
     {
-        switch (SelectedSort)
+        switch (sort)
         {
             case "Rank":
-                Markets = mar.OrderBy(coin => coin.MarketCapRank).ToList();
-                break;
+                return markets.OrderBy(coin => coin.MarketCapRank).ToList();
 
             case "Name":
-                Markets = mar.OrderBy(coin => coin.Name).ToList();
-                break;
+                return markets.OrderBy(coin => coin.Name).ToList();
 
             case "Market Cap":
-                Markets = mar.OrderByDescending(coin => coin.MarketCap).ToList();
-                break;
+                return markets.OrderByDescending(coin => coin.MarketCap).ToList();
 
             case "% Change":
-                Markets = mar.OrderByDescending(coin => coin.PriceChangePercentage24H).ToList();
+                return markets.OrderByDescending(coin => coin.PriceChangePercentage24H).ToList();
                 
-                break;
-
             case "Price":
-                Markets = mar.OrderByDescending(coin => coin.CurrentPrice).ToList();
-                break;
+                return markets.OrderByDescending(coin => coin.CurrentPrice).ToList();
 
             default:
-                break;
+                return markets;
         }
     }
 }

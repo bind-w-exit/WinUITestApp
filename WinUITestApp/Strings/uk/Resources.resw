@@ -132,4 +132,7 @@
   <data name="Settings_Language.Header" xml:space="preserve">
     <value>Мова</value>
   </data>
+  <data name="Coin_Error.Title" xml:space="preserve">
+    <value>Помилка</value>
+  </data>
 </root>

@@ -49,9 +49,6 @@ public class CoinGeckoApiService : ICryptoApiService
 
     public async Task<List<CoinMarket>> GetCoinMarkets(string targetCurrency, int perPage, bool sparkline)
     {
-        //Imitation loading
-        Task.Delay(3000).Wait();
-
         List <CoinMarket> markets = null;
 
         var uri = baseUri + "/coins/markets?vs_currency="
@@ -89,7 +86,7 @@ public class CoinGeckoApiService : ICryptoApiService
         var uri = baseUri + "/coins/" + id
             + "?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=true";
 
-        using (var response = await _httpClient.GetAsync(1 + uri))
+        using (var response = await _httpClient.GetAsync(uri))
         {
             if (response.IsSuccessStatusCode)
             {

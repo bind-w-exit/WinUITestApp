@@ -178,6 +178,10 @@
           <source>Language</source>
           <target state="translated">Мова</target>
         </trans-unit>
+        <trans-unit id="Coin_Error.Title" translate="yes" xml:space="preserve">
+          <source>Error</source>
+          <target state="translated">Помилка</target>
+        </trans-unit>
       </group>
     </body>
   </file>

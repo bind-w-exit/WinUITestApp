@@ -246,4 +246,7 @@
   <data name="Market_Timeframe.Header" xml:space="preserve">
     <value>Timeframe</value>
   </data>
+  <data name="Coin_Error.Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
 </root>
